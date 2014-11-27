@@ -1,0 +1,9 @@
+{
+  "name": "cocos2d-game",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-uglify": "*"
+  }
+}
