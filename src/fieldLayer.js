@@ -1,5 +1,6 @@
 var FieldLayer = cc.Layer.extend({
-  _chara : null,
+  _ship : null,
+  _block : null,
   ctor : function(){
     this._super();
   },
@@ -12,13 +13,13 @@ var FieldLayer = cc.Layer.extend({
     //3. calculate the center point
     var centerpos = cc.p(winsize.width / 2, winsize.height / 2);
 
+    _block = new Block(winsize.width, 0, 30, 200);
+    this.addChild(_block);
 
     //4. create a background image and set it's position at the center of the screen
-    _chara = new cc.Sprite(res.chara);
-    _chara.vy = -10;
+    _ship = new Ship();
 
-    _chara.setPosition(centerpos);
-    this.addChild(_chara);
+    this.addChild(_ship);
 
     cc.eventManager.addListener({
       event: cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -28,13 +29,10 @@ var FieldLayer = cc.Layer.extend({
 
     this.scheduleUpdate();
   },
-  update: function () {
-    if (_chara.y > 0) {
-      _chara.y = _chara.y + _chara.vy;
-      _chara.vy += -0.05;
-    }
-  },
   onTouch: function () {
-    _chara.vy = 3;
+    _ship.onTouch();
+  },
+  update: function () {
+    _block.x -= 0.5;
   }
 });
