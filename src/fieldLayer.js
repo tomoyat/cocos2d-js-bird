@@ -33,6 +33,12 @@ var FieldLayer = cc.Layer.extend({
     _ship.onTouch();
   },
   update: function () {
-    _block.x -= 0.5;
+    _block.x -= 1;
+    var shipRect = _ship.getBoundingBox();
+    var blockRect = _block.getBoundingBox();
+
+    if (cc.rectIntersectsRect(shipRect, blockRect)) {
+      _ship.gameOver();
+    }
   }
 });
