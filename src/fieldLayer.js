@@ -13,7 +13,7 @@ var FieldLayer = cc.Layer.extend({
     //3. calculate the center point
     var centerpos = cc.p(winsize.width / 2, winsize.height / 2);
 
-    _block = new Block(winsize.width, 0, 30, 200);
+    _block = new Block(winsize.width, 0, 30, 200, winsize);
     this.addChild(_block);
 
     //4. create a background image and set it's position at the center of the screen
@@ -33,7 +33,8 @@ var FieldLayer = cc.Layer.extend({
     _ship.onTouch();
   },
   update: function () {
-    _block.x -= 1;
+    _block.update();
+
     var shipRect = _ship.getBoundingBox();
     var blockRect = _block.getBoundingBox();
 
