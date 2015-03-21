@@ -1,6 +1,6 @@
 var FieldLayer = cc.Layer.extend({
   _ship : null,
-  _block : null,
+  _blockMgr : null,
   ctor : function(){
     this._super();
   },
@@ -13,8 +13,9 @@ var FieldLayer = cc.Layer.extend({
     //3. calculate the center point
     var centerpos = cc.p(winsize.width / 2, winsize.height / 2);
 
-    _block = new Block(winsize.width, 0, 30, 200, winsize);
-    this.addChild(_block);
+    _blockMgr = new BlockMgr(winsize.width, winsize.height, this);
+    _blockMgr.init();
+
 
     //4. create a background image and set it's position at the center of the screen
     _ship = new Ship();
@@ -33,13 +34,6 @@ var FieldLayer = cc.Layer.extend({
     _ship.onTouch();
   },
   update: function () {
-    _block.update();
-
-    var shipRect = _ship.getBoundingBox();
-    var blockRect = _block.getBoundingBox();
-
-    if (cc.rectIntersectsRect(shipRect, blockRect)) {
-      _ship.gameOver();
-    }
+    _blockMgr.update(_ship);
   }
 });

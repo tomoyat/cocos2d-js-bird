@@ -17,7 +17,7 @@ var Ship = cc.Sprite.extend({
   },
   onTouch: function () {
     console.log("touch");
-    this.vy = 6;
+    this.vy = 8;
   },
   gameOver: function () {
     cc.director.runScene(new GameOverScene);

@@ -4,13 +4,15 @@ var Block = cc.LayerColor.extend({
     this.x = _x;
     this.y = _y;
     this.width = width;
-    this.winsize = winsize;
     return true;
   },
   update: function () {
-    this.x -= 1;
+
+    this.x -= 2.8;
     if (this.x + this.width < 0) {
-      this.x = this.winsize.width + this.width;
+      console.log("claen!");
+      this.removeFromParent(true);
+      return true;
     }
   }
 });
