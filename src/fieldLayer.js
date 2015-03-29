@@ -1,6 +1,7 @@
 var FieldLayer = cc.Layer.extend({
   _ship : null,
   _blockMgr : null,
+  _winsize : null,
   ctor : function(){
     this._super();
   },
@@ -8,12 +9,12 @@ var FieldLayer = cc.Layer.extend({
     this._super();
 
     //2. get the screen size of your game canvas
-    var winsize = cc.director.getWinSize();
+    _winsize = cc.director.getWinSize();
 
     //3. calculate the center point
-    var centerpos = cc.p(winsize.width / 2, winsize.height / 2);
+    var centerpos = cc.p(_winsize.width / 2, _winsize.height / 2);
 
-    _blockMgr = new BlockMgr(winsize.width, winsize.height, this);
+    _blockMgr = new BlockMgr(_winsize.width, _winsize.height, this);
     _blockMgr.init();
 
 
@@ -34,6 +35,9 @@ var FieldLayer = cc.Layer.extend({
     _ship.onTouch();
   },
   update: function () {
+    if (_ship.y > _winsize.height) {
+      _ship.gameOver();
+    }
     _blockMgr.update(_ship);
   }
 });

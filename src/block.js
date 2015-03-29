@@ -8,7 +8,7 @@ var Block = cc.LayerColor.extend({
   },
   update: function () {
 
-    this.x -= 2.8;
+    this.x -= 2.0;
     if (this.x + this.width < 0) {
       console.log("claen!");
       this.removeFromParent(true);
