@@ -26,6 +26,16 @@ var GameOverLayer = cc.Layer.extend({
 
     menu.setPosition(centerpos);
     this.addChild(menu);
+
+
+    var resultScoreLabel = new cc.LabelTTF();
+    resultScoreLabel.setFontSize(30);
+    resultScoreLabel.setPosition( winsize.width / 2 , winsize.height - 150);
+    resultScoreLabel.setString("score: " + global_score);
+
+    this.addChild(resultScoreLabel);
+
+
   },
 
   onPlay : function(){

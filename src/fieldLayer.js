@@ -2,6 +2,7 @@ var FieldLayer = cc.Layer.extend({
   _ship : null,
   _blockMgr : null,
   _winsize : null,
+  _scoreLabel: null,
   ctor : function(){
     this._super();
   },
@@ -23,6 +24,13 @@ var FieldLayer = cc.Layer.extend({
 
     this.addChild(_ship);
 
+    _scoreLabel = new cc.LabelTTF();
+    _scoreLabel.setFontSize(20);
+    _scoreLabel.setPosition( _winsize.width - 45, _winsize.height - 30);
+    this.addChild(_scoreLabel);
+
+    _scoreLabel.setString("score: " + _ship.getScore());
+
     cc.eventManager.addListener({
       event: cc.EventListener.TOUCH_ONE_BY_ONE,
       swallowTouches: true,
@@ -38,6 +46,9 @@ var FieldLayer = cc.Layer.extend({
     if (_ship.y > _winsize.height) {
       _ship.gameOver();
     }
+    _scoreLabel.removeFromParent();
+    _scoreLabel.setString("score: " + _ship.getScore());
+    this.addChild(_scoreLabel);
     _blockMgr.update(_ship);
   }
 });

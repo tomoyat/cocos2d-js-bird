@@ -28,11 +28,13 @@ BlockMgr.prototype = {
   update: function (_ship) {
     var shipRect = _ship.getBoundingBox();
     for (var i = 0; i < this._mgr.length;) {
-      console.log(this._mgr.length);
       var ret = this._mgr[i].update();
       var blockRect = this._mgr[i].getBoundingBox();
       if (cc.rectIntersectsRect(shipRect, blockRect)) {
         _ship.gameOver();
+      }
+      if (_ship.x > this._mgr[i].x) {
+        _ship.pointGet(this._mgr[i].pullPoint());
       }
       if (ret) {
         console.log("del");
@@ -44,5 +46,6 @@ BlockMgr.prototype = {
     if (this._mgr.length < 2) {
       this.add();
     }
+    console.log("score : " ,_ship.score);
   }
 };

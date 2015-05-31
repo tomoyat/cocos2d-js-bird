@@ -4,7 +4,13 @@ var Block = cc.LayerColor.extend({
     this.x = _x;
     this.y = _y;
     this.width = width;
+    this.point = 1;
     return true;
+  },
+  pullPoint: function () {
+    var p = this.point;
+    this.point = 0;
+    return p;
   },
   update: function () {
 
