@@ -21,8 +21,17 @@ var GameOverLayer = cc.Layer.extend({
       this.onPlay,
       this
     );
+    
+    var rankingButton = new cc.MenuItemLabel(
+      new cc.LabelTTF("ranking", "Arial", 30),
+      this.onRanking,
+      this
+    );
+    rankingButton.setPosition(0,-80);
+    
     var menu = new cc.Menu();
     menu.addChild(restartButton);
+    menu.addChild(rankingButton);
 
     menu.setPosition(centerpos);
     this.addChild(menu);
@@ -41,5 +50,9 @@ var GameOverLayer = cc.Layer.extend({
   onPlay : function(){
     cc.log("==onplay clicked");
     cc.director.runScene(new GameScene);
+  },
+  onRanking: function() {
+    cc.log("==onRanking clicked");
+    cc.director.runScene(new RankingScene);
   }
 });
